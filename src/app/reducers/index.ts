@@ -3,13 +3,22 @@ import {
   ActionReducer,
   ActionReducerMap,
   createFeatureSelector,
+  createReducer,
   createSelector,
   MetaReducer
 } from '@ngrx/store';
-import { AuthState } from '../auth/reducers';
+import * as fromAuth from '../auth/reducers';
 
 export const appFeatureKey = 'app';
 
 export interface AppState {
-  auth: AuthState;
+  auth: fromAuth.AuthState;
 }
+
+export const initialAppState: AppState = {
+  auth: fromAuth.initialAuthState
+};
+
+export const appReducer = createReducer(
+  initialAppState,
+);
